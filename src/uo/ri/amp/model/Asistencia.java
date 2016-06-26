@@ -20,8 +20,7 @@ import uo.ri.amp.model.types.AsistenciaStatus;
 @IdClass(AsistenciaKey.class)
 @Table(name="TAsistencias")
 public class Asistencia {
-	
-	
+
 	private Double pasistencia;
 	
 	@Id @ManyToOne private Curso curso;
