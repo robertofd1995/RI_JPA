@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings 
+	xmlns="http://java.sun.com/xml/ns/persistence/orm" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+  	version="2.0">
+  	
+  	<!-- Mecanico queries -->
+  	<named-query name="Mecanico.findByDni">
+		<query> select a from Mecanico a where a.dni = ?1 </query>
+	</named-query>
+	
+	<named-query name="Mecanico.findExpertosTipo">
+		<query> select c.mecanico from Certificado c where c.tipo = ?1 </query>
+	</named-query>
+	
+	<named-query name="Mecanico.findAll">
+		<query> select m from Mecanico m </query>
+	</named-query>
+	
+	<named-query name="Mecanico.formacionPorIdI">
+		<query>
+		select Sum(c.totalHoras) as THORAS_CURSOS , sum( (a.pasistencia/100) * c.totalHoras) as HORA_SASISTIDAS from Fragmento f,Asistencia a,Curso c
+		 where a.curso=f.curso and f.curso=c.id and a.mecanico.id = ?1	
+		</query>
+	</named-query>
+	
+	
+    <named-query name="Mecanico.formacionPorId2">
+		<query>
+		select t.nombre ,sum((a.pasistencia/100) * c.totalHoras) as HORAS_TIPO 
+		from Fragmento f,Asistencia a,Curso c ,TipoVehiculo t
+		where a.curso=c
+		and f.curso=c 
+		and f.tipo=t 
+		and a.mecanico.id = ?1 group by t.nombre 
+		</query>
+	</named-query>
+	
+	 
+	<named-query name="Mecanico.formacionPorTipo">
+		<query>             <!--pasistencia -->  
+		select m.nombre ,sum((a.pasistencia/100)* c.totalHoras) as HORAS_POR_TIPO 
+		from Fragmento f,Asistencia a,Curso c ,TipoVehiculo t ,Mecanico m
+		where a.curso=f.curso 
+		and c=a.curso 
+		and t=f.tipo 
+		and m=a.mecanico 
+		and t.id=?1 
+		group by m.nombre,t.nombre
+		</query>
+	</named-query>
+	
+	 
+	
+	<!-- Averia queries --> 
+ 
+ 	<named-query name="Averia.findByIds">
+		<query> select a from Averia a where a.id in (?1) </query>
+	</named-query>
+	
+	<named-query name="Averia.findAll">
+		<query>select a from Averia a</query>
+	</named-query>
+	
+	<named-query name="Averia.findByMatricula">
+		<query>
+			select a from Averia a where a.vehiculo.matricula = ?1 
+		</query>
+	</named-query>
+
+<!-- Curso querys -->
+	
+	<named-query name="Curso.findAll">
+		<query>select c from Curso c</query>
+	</named-query>
+	
+	<named-query name="Curso.findByCodigo">
+		<query>select c from Curso c where c.codigo = ?1</query>
+	</named-query>
+	
+	<named-query name="Curso.existeCurso">
+		<query>select count(c) from Curso c where c.codigo = ?1</query>
+	</named-query>
+	
+	
+
+<!-- Fragmento querys -->
+
+	<named-query name="Fragmento.findByCursoId">
+		<query>select f from Fragmento f where f.curso.id = ?1 </query>
+	</named-query>
+	
+<!-- TipoVehiculo querys -->
+
+	<named-query name="TipoVehiculo.findByNombre">
+		<query>select t from TipoVehiculo t where t.nombre = ?1 </query>
+	</named-query>
+
+	<named-query name="TipoVehiculo.findAll">
+		<query>select t from TipoVehiculo t </query>
+	</named-query>
+
+<!-- Asistencia querys -->
+	<named-query name="Asistencia.findByCursoId">
+		<query>select a from Asistencia a where a.curso.codigo = ?1 </query>
+	</named-query>
+	
+	<named-query name="Asistencia.findByKey">
+		<query>select a from Asistencia a where a.curso.id = ?1 and a.mecanico.id = ?2 and a.fInicio = ?3 </query>
+	</named-query>
+	
+	<named-query name="Asistencia.existe">
+		<query>select count(a) from Asistencia a where a.curso.id = ?1 and a.mecanico.id = ?2 and a.fInicio = ?3 </query>
+	</named-query>
+	
+<!-- Certificado query -->
+
+	<named-query name="Certificado.generarNuevos">
+	<query> 
+		select a.mecanico.id,f.tipo.id,CURRENT_DATE FROM Asistencia a,Fragmento f,Curso c,TipoVehiculo t 
+		where a.curso=f.curso AND c.id=f.curso AND t.id=f.tipo and 
+		 t.horasExperto &lt;= (select sum((ai.pasistencia/100) * ci.totalHoras )
+		 from Asistencia ai , Fragmento fi,Curso ci,TipoVehiculo ti 
+		where ai.curso=fi.curso and ci.id=fi.curso and ti.id=fi.tipo and ai.mecanico=a.mecanico 
+		and ai.status = uo.ri.amp.model.types.AsistenciaStatus.APTO)
+		group by a.mecanico.id,f.tipo.id,CURRENT_DATE 
+		
+	</query>
+	</named-query>
+	
+	<named-query name="Certificado.exist">
+	<query> 
+		select count(c) from Certificado c where c=?1
+	</query>
+	</named-query>
+
+<!-- 	<named-query name="Averia.findNoFacturadasByDni">
+		<query>
+			select a 
+			from Averia a 
+			where a.vehiculo.cliente.dni = ?1 
+				and a.status = uo.ri.model.types.AveriaStatus.TERMINADA 
+		</query>
+	</named-query>
+ -->
+
+<!-- 
+	<named-query name="findItemsOnSaleByCategoryId">
+		<query>
+			<![CDATA[
+			select i 
+				from Item i join i.categories c
+				where c.id = ?2
+					and i.startDate <= ?1
+					and i.endDate >= ?1 
+			]]>
+		</query>
+	</named-query>
+ -->		
+
+</entity-mappings>
