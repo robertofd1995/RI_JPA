@@ -32,10 +32,7 @@ public abstract class MedioPago
 	@OneToMany(mappedBy = "medioPago")
 	private Set<Cargo> cargos = new HashSet<>();
 
-	MedioPago()
-	{
-		// super();
-	}
+	public MedioPago(){}
 
 	public MedioPago(Cliente cliente)
 	{

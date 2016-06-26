@@ -29,7 +29,7 @@ public class Cliente
 	@OneToMany(mappedBy="cliente")
 	private Set<MedioPago> mediosPago = new HashSet<>();
 
-	Cliente()
+	public Cliente()
 	{
 	}
 

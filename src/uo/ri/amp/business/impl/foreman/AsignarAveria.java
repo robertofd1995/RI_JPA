@@ -1,7 +1,9 @@
 package uo.ri.amp.business.impl.foreman;
 
 import uo.ri.amp.business.impl.asserts.AssertAveria;
+import uo.ri.amp.model.Association;
 import uo.ri.amp.model.Averia;
+import uo.ri.amp.model.Mecanico;
 import uo.ri.amp.persistence.AveriaFinder;
 import uo.ri.amp.persistence.MecanicoFinder;
 import uo.ri.business.impl.Command;
@@ -22,13 +24,15 @@ public class AsignarAveria implements Command {
 	public Object execute() throws BusinessException {
 		
 		Averia averiaBD=AveriaFinder.findById(averia.getId());
-		
+		Mecanico mecanico =MecanicoFinder.findById(mecanicoId);
+
 		if(!AssertAveria.Abierta(averia))
 			throw new BusinessException("La averia no puede ser asignada puesto que se encuentra en estado " + averiaBD.getStatus());
-		
-		averiaBD.asignarMecanico(MecanicoFinder.findById(mecanicoId));
+
 		averiaBD.setStatus(AveriaStatus.ASIGNADA);
-		
+		Association.Asignar.link(mecanico,averiaBD);
+
+
 		return averiaBD;
 	}
 

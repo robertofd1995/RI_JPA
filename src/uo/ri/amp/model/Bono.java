@@ -11,7 +11,7 @@ public class Bono extends MedioPago
 	protected double disponible = 0.0;
 	protected String codigo;
 
-	Bono()
+	public Bono()
 	{
 
 	}

@@ -25,9 +25,7 @@ public class Repuesto
 	@OneToMany(mappedBy="repuesto")
 	private Set<Sustitucion> sustituciones = new HashSet<>();
 
-	Repuesto()
-	{
-	}
+	public Repuesto(){}
 
 	public Repuesto(String codigo)
 	{

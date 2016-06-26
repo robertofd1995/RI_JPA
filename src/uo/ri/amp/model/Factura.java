@@ -37,7 +37,7 @@ public class Factura
 	private double importe;
 	private double iva=0;
 	
-	 @Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)
 	private FacturaStatus status = FacturaStatus.SIN_ABONAR;
 
 	@OneToMany(mappedBy="factura")
@@ -63,16 +63,16 @@ public class Factura
 
 	public Factura(long numero, List<Averia> averias) throws BusinessException
 	{
+		this(numero);
 		checkFacturasTerminadas(averias);
-		this.numero = numero;
 		this.averias = new HashSet<Averia>(averias);
 		facturarAverias(averias);
 	}
 
 	public Factura(long numero, Date fecha, List<Averia> averias) throws BusinessException
 	{
+		this(numero);
 		checkFacturasTerminadas(averias);
-		this.numero = numero;
 		this.fecha = fecha;
 		this.averias = new HashSet<Averia>(averias);
 		facturarAverias(averias);

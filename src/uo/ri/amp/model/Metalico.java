@@ -7,10 +7,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("TMetalico")
 public class Metalico extends MedioPago {
 
-	Metalico()
-	{
-		
-	}
+	public Metalico(){}
 	
 	public Metalico(Cliente cliente)
 	{

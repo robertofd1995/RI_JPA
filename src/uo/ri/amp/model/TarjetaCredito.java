@@ -18,10 +18,7 @@ public class TarjetaCredito extends MedioPago
 	@Temporal(TemporalType.TIMESTAMP)
 	protected Date validez;
 
-	TarjetaCredito()
-	{
-		
-	}
+	public TarjetaCredito(){}
 	
 	public TarjetaCredito(String numero)
 	{

@@ -36,7 +36,7 @@ public class AsistenciaFinder {
 	public static Long existeAveria(String dni, Long codigo, Date finicio) {
 		
 		Long result= (Long) Jpa.getManager().createNamedQuery("Asistencia.existe",Long.class)
-				.setParameter(1, dni).setParameter(2, codigo).setParameter(3, finicio).getSingleResult();
+				.setParameter(2, dni).setParameter(1, codigo).setParameter(3, finicio).getSingleResult();
 		return result;
 	}
 

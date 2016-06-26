@@ -9,6 +9,7 @@ import alb.util.menu.Action;
 import uo.ri.amp.business.impl.asserts.AssertCurso;
 import uo.ri.amp.model.Curso;
 import uo.ri.conf.ServicesFactory;
+import uo.ri.model.exception.BusinessException;
 
 /**
  * En esta clase se llevara a cabo la obtencion de datos para insertar un curso
@@ -20,7 +21,7 @@ public class AddCursoAction implements Action {
 	@Override
 	public void execute() throws Exception {
 		
-		Console.println("Añadir Curso \n");
+		Console.println("Aï¿½adir Curso \n");
 		
 		@SuppressWarnings("unused")
 		List<Curso> cursos=new ArrayList<Curso>();
@@ -56,18 +57,17 @@ public class AddCursoAction implements Action {
 							String tipoVehiculo=Console.readString("tipo vehiculo (Ej : Coche Aviso primera letra mayuscula)");
 							
 							
-							Double porcentaje=Console.readDouble("horas ");
+							Double porcentaje=Console.readDouble("porcentaje ");
 							
-							if(acumulador+porcentaje>totalHoras){
-								Console.println("La suma de las horas de los fragmentos exceden las del curso");
-								Console.println("Curso no añadido");
-								break;
+							if(acumulador+porcentaje>100){
+								throw new BusinessException("La suma de los porcentajes de los" +
+										" fragmentos exceden el 100% \n Curso no aï¿½adido");
 							}else{
 								acumulador+=porcentaje;
 							}
 							
 							fragmento.put("tipo", tipoVehiculo);
-							fragmento.put("porcentaje", porcentaje);
+							fragmento.put("porcentaje", (porcentaje/100)*totalHoras);
 						} catch (RuntimeException e) {
 							Console.println("ERROR : ha intentado introducir caracteres como numeros");
 							break;

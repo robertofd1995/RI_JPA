@@ -23,7 +23,7 @@ public class DeleteCurso implements Command {
 		Curso c=CursoFinder.findByCodigo(idCurso);
 		
 		for (Fragmento fragmento : c.getFragmentos()) {
-			Association.Fragmentar.unlink(c, fragmento);
+			Association.Fragmentar.unlink(fragmento);
 			Jpa.getManager().remove(fragmento);
 		}
 		

@@ -25,20 +25,14 @@ public class Fragmento {
 	
 	public Fragmento() {
 	}
-	
-	public Fragmento(TipoVehiculo tipo , Double horas){
-		this.curso=null;
-		this.tipo=tipo;
-		this.horas=horas;	
+
+	public Fragmento(TipoVehiculo tipo ,Curso curso){
+		Association.Fragmentar.link(curso,this,tipo);
 	}
-	
+
 	public Fragmento(Curso curso,TipoVehiculo tipo , Double horas){
-		
-		this.curso=curso;
-		this.tipo=tipo;
+		this(tipo, curso);
 		this.horas=horas;
-		
-		Association.Fragmentar.link(curso,this);
 	}
 	
 	@Override
@@ -46,11 +40,6 @@ public class Fragmento {
 		return "Fragmento [curso=" + curso.getNombre() + ", tipoVehiculo=" + tipo.getNombre() + ", horas=" + horas.doubleValue() + "]";
 	}
 
-	public void asignarFragmento(Curso curso){
-		this.curso=curso;
-		Association.Fragmentar.link(curso,this);
-	}
-	
 	public Double getHoras() {
 		return horas;
 	}
@@ -74,7 +63,23 @@ public class Fragmento {
 	protected void _setTipoVehiculo(TipoVehiculo tipoVehiculo) {
 		this.tipo = tipoVehiculo;
 	}
-	
-	
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Fragmento fragmento = (Fragmento) o;
+
+		if (!getCurso().equals(fragmento.getCurso())) return false;
+		return tipo.equals(fragmento.tipo);
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = getCurso().hashCode();
+		result = 31 * result + tipo.hashCode();
+		return result;
+	}
 }

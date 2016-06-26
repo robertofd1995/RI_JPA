@@ -7,8 +7,6 @@ import uo.ri.business.impl.Command;
 import uo.ri.model.exception.BusinessException;
 
 public class ExisteAsistencia implements Command {
-	
-	
 
 	private String dni;
 	private Long codigo;

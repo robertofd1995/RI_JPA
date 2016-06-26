@@ -17,8 +17,7 @@ public class UpdateCurso implements Command {
 	public Curso execute() throws BusinessException {
 		
 		Curso cursoBd=CursoFinder.findById(curso.getId());
-		
-		cursoBd.setCodigo(curso.getCodigo());
+
 		cursoBd.setDescripcion(curso.getDescripcion());
 		cursoBd.setNombre(curso.getNombre());
 		cursoBd.setTotalHoras(curso.getTotalHoras());

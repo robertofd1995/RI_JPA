@@ -18,23 +18,19 @@ public class Cargo
 	@Id @ManyToOne  private MedioPago medioPago;
 	private double importe = 0.0;
 
-	Cargo()
+	public Cargo()
 	{
 	}
 
 	public Cargo(Factura factura, MedioPago medioPago)
 	{
-		this.factura = factura;
-		this.medioPago = medioPago;
 		Association.Cargar.link(this, factura, medioPago);
 	}
 
 	public Cargo(Factura factura, MedioPago medioPago, double importe)
 	{
-		// this(factura,medioPago);
+		this(factura,medioPago);
 		this.importe = importe;
-		this.factura = factura;
-		this.medioPago = medioPago;
 		Association.Cargar.link(this, factura, medioPago);
 	}
 

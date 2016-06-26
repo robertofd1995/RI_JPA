@@ -21,12 +21,10 @@ public class ModificarCursoAction implements Action{
 		Curso curso=ServicesFactory.getAdminService().findCursoByCodigo(codigoCurso);
 		
 		String nombre=Console.readString("Nombre ");
-		Long codigo=Console.readLong("Codigo :");
 		String descripcion=Console.readString("Descripcion ");
 		
 		curso.setNombre(nombre);
 		curso.setDescripcion(descripcion);
-		curso.setCodigo(codigo);
 		
 		try {
 			totalHoras=Console.readDouble("Total horas ");
@@ -38,8 +36,7 @@ public class ModificarCursoAction implements Action{
 		}else{
 			throw new BusinessException("El total de horas del nuevo curso no puede ser menor al anterior");
 		}
-		
-		
+
 		ServicesFactory.getAdminService().updateCurso(curso);
 		
 	}

@@ -23,11 +23,10 @@ public class Intervencion
 
 	private int minutos;
 
-	
 	@OneToMany(mappedBy="intervencion")
 	private Set<Sustitucion> sustituciones = new HashSet<>();
 
-	Intervencion()
+	public Intervencion()
 	{
 	}
 

@@ -111,7 +111,7 @@
 	</named-query>
 	
 	<named-query name="Asistencia.existe">
-		<query>select count(a) from Asistencia a where a.curso.id = ?1 and a.mecanico.id = ?2 and a.fInicio = ?3 </query>
+		<query>select count(a) from Asistencia a where a.curso.codigo = ?1 and a.mecanico.dni = ?2 and a.fInicio = ?3 </query>
 	</named-query>
 	
 <!-- Certificado query -->

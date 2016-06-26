@@ -3,11 +3,7 @@ package uo.ri.amp.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="TTiposVehiculo")
@@ -19,6 +15,8 @@ public class TipoVehiculo
 
 	private String nombre;
 	private Double precioHora;
+
+	@Column(name = "horasexperto")
 	private Double horasExperto;
 
 	@OneToMany(mappedBy="tipo")
@@ -27,7 +25,11 @@ public class TipoVehiculo
 	@OneToMany(mappedBy="tipo")
 	private Set<Fragmento> fragmentos=new HashSet<Fragmento>();
 
-	TipoVehiculo(){}
+	@OneToMany(mappedBy="tipo")
+	private Set<Certificado> certificados=new HashSet<Certificado>();
+
+
+	public TipoVehiculo(){}
 
 	public TipoVehiculo(String nombre)
 	{
@@ -81,7 +83,16 @@ public class TipoVehiculo
 	public Set<Fragmento> getFragmentos() {
 		return new HashSet<Fragmento>(fragmentos);
 	}
-	
+
+	Set<Certificado> _getCertificados() {
+		return certificados;
+	}
+
+	public Set<Certificado> getCertificados() {
+		return new HashSet<Certificado>(certificados);
+	}
+
+
 	public Long getId() {
 		return id;
 	}

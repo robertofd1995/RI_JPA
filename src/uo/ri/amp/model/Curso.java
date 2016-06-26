@@ -34,68 +34,34 @@ public class Curso {
 	
 
 	public Curso() {}
-	
-	public Curso(String nombre ,Long codigo, String descripcion,Double totalHoras){
-		this.nombre=nombre;
-		this.descripcion=descripcion;
-		this.totalHoras=totalHoras;
+
+	public Curso(Long codigo){
 		this.codigo=codigo;
 	}
 	
-	public boolean anadirFragmento(Fragmento fragmento) throws BusinessException{
-		
-		double suma=0;
-		
-		for (Fragmento fragmentoaux : fragmentos) {
-			suma+=fragmentoaux.getHoras();
-		}
-		
-		if(this.totalHoras.doubleValue() >= suma){
-			Association.Fragmentar.link(this, fragmento);
-			return true;
-		}else{
-			//return false;
-			throw new BusinessException("La suma de los fragmentos supera las horas del curso");
-		}	
-		
-		
-	}
-	
-	public boolean eliminarFragmento(Fragmento fragmento) throws BusinessException{
-		
-		if (fragmentos.contains(fragmento)) {
-			fragmentos.remove(fragmento);
-			return true;
-		}else{
-			throw new BusinessException("Se esta intentando eliminar un fragmento que no existe");	
-		}
-	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		return result;
+	public Curso(String nombre ,Long codigo, String descripcion,Double totalHoras){
+		this(codigo);
+		this.nombre=nombre;
+		this.descripcion=descripcion;
+		this.totalHoras=totalHoras;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Curso other = (Curso) obj;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		return true;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Curso curso = (Curso) o;
+
+		return getCodigo().equals(curso.getCodigo());
+
 	}
-	
+
+	@Override
+	public int hashCode() {
+		return getCodigo().hashCode();
+	}
+
 	@Override
 	public String toString() {
 		return "Curso [nombre=" + nombre + ", descripcion=" + descripcion + ", totalHoras=" + totalHoras
@@ -144,7 +110,6 @@ public class Curso {
 		return new HashSet<Asistencia>(asistencias);
 	}
 
-
 	public Long getId() {
 		return id;
 	}
@@ -153,9 +118,6 @@ public class Curso {
 		return codigo;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
-	}
 	
 	
 	

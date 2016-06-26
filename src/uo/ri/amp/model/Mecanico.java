@@ -33,7 +33,7 @@ public class Mecanico
 	private Set<Asistencia> asistencias = new HashSet<>();
 	
 
-	Mecanico()
+	public Mecanico()
 	{
 	}
 

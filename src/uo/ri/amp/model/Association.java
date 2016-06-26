@@ -46,24 +46,27 @@ public class Association
 			
 			
 		}
-
-		
-		
 	}
 	
 	public static class Fragmentar
 	{
 
-		public static void link(Curso curso, Fragmento fragmento)
+		public static void link(Curso curso, Fragmento fragmento,TipoVehiculo tipo)
 		{
 			fragmento._setCurso(curso);
+			fragmento._setTipoVehiculo(tipo);
+
+			tipo._getFragmentos().add(fragmento);
 			curso._getFragmentos().add(fragmento);	
 		}
 
-		public static void unlink(Curso curso, Fragmento fragmento)
+		public static void unlink(Fragmento fragmento)
 		{
-			curso._getFragmentos().remove(fragmento);
+			fragmento.getTipoVehiculo()._getFragmentos().remove(fragmento);
+			fragmento.getCurso()._getFragmentos().remove(fragmento);
+
 			fragmento._setCurso(null);
+			fragmento._setTipoVehiculo(null);
 		}
 		
 	}
@@ -71,20 +74,26 @@ public class Association
 	public static class Certificar
 	{
 
-		public static void link(Certificado certificado, Mecanico mecanico)
+		public static void link(Certificado certificado, Mecanico mecanico,TipoVehiculo tipo)
 		{
 			
 			//TODO Comprobar si cumple requisitos
-			certificado.setMecanico(mecanico);
+			certificado._setMecanico(mecanico);
+			certificado._setTipo(tipo);
+
+			tipo._getCertificados().add(certificado);
 			mecanico._getCertificados().add(certificado);
 			
 		}
 
-		public static void unlink(Certificado certificado, Mecanico mecanico)
+		public static void unlink(Certificado certificado, Mecanico mecanico,TipoVehiculo tipo)
 		{
-			
+
+			certificado.getTipo()._getCertificados().remove(certificado);
 			mecanico._getCertificados().remove(certificado);
-			certificado.setMecanico(null);
+
+			certificado._setMecanico(null);
+			certificado._setTipo(null);
 			
 		}
 		

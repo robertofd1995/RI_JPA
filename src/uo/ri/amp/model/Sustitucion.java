@@ -23,9 +23,7 @@ public class Sustitucion
 	
 	private int cantidad;
 
-	Sustitucion()
-	{
-	}
+	public Sustitucion(){}
 
 	public Sustitucion(Repuesto repuesto, Intervencion intervencion)
 	{

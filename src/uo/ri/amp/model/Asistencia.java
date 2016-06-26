@@ -36,28 +36,19 @@ public class Asistencia {
 	
 	public Asistencia() {}
 	
-	public Asistencia(Curso curso , Date finicio, Date ffinal){
-		
-		this.curso=curso;
-		this.fFinal=ffinal;
+	public Asistencia(Mecanico mecanico ,Curso curso , Date finicio){
+
+		Association.Asistir.link(curso,this,mecanico);
 		this.fInicio=finicio;
 	}
 
 	public Asistencia(Mecanico mecanico , Curso curso , Date finicio, Date ffinal,double porcentaje,AsistenciaStatus status){
-		this.mecanico=mecanico;
-		this.curso=curso;
-		this.fFinal=ffinal;
-		this.fInicio=finicio;
-		
-		this.pasistencia=porcentaje;
-		
-		if (pasistencia>=Constantes.MINIMO_ASISTENCIA) {
-			this.status=status;
-		}else
-			this.status=AsistenciaStatus.NO_APTO;
-		
-		
-		Association.Asistir.link(curso,this,mecanico);
+
+		this(mecanico, curso, finicio);
+
+		setfFinal(ffinal);
+		setStatus(status);
+		setAsistencia(porcentaje);
 	}
 	
 	
@@ -67,24 +58,40 @@ public class Asistencia {
 				+ fInicio + ", fFinal=" + fFinal + ", status=" + status + "]";
 	}
 
-	public void anadirAsistencia(Mecanico mecanico ,double porcentajeAsistencia, AsistenciaStatus status){
-		this.mecanico=mecanico;
-		this.pasistencia=porcentajeAsistencia;
-		
-		if (pasistencia>=85) {
-			this.status=status;
-		}else
-			this.status=AsistenciaStatus.NO_APTO;
-		
-		Association.Asistir.link(curso,this,mecanico);
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Asistencia that = (Asistencia) o;
+
+		if (!getCurso().equals(that.getCurso())) return false;
+		if (!getMecanico().equals(that.getMecanico())) return false;
+		return getfInicio().equals(that.getfInicio());
+
 	}
-	
+
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((curso == null) ? 0 : curso.hashCode());
+		result = prime * result + ((fInicio == null) ? 0 : fInicio.hashCode());
+		result = prime * result + ((mecanico == null) ? 0 : mecanico.hashCode());
+		return result;
+	}
+
 	//GETTERS AND SETTERS
 	public Double getAsistencia() {
 		return pasistencia;
 	}
 
 	public void setAsistencia(Double asistencia) {
+
+		if (asistencia<=Constantes.MINIMO_ASISTENCIA) {
+			this.status=AsistenciaStatus.NO_APTO;
+		}
 		this.pasistencia = asistencia;
 	}
 

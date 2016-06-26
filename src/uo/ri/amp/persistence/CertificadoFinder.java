@@ -21,8 +21,11 @@ public class CertificadoFinder {
 		
 		
 		for (Object[] certificado : certi) {
-			
-			certificados.add(new Certificado(MecanicoFinder.findById((Long)certificado[0]), TipoVehiculoFinder.findById((Long)certificado[1]), (Date)certificado[2]));
+
+			Certificado certAux =new Certificado(MecanicoFinder.findById((Long)certificado[0]), TipoVehiculoFinder.findById((Long)certificado[1]), (Date)certificado[2]);
+
+			if (certAux.getMecanico()!=null)
+				certificados.add(certAux);
 			
 		}
 		

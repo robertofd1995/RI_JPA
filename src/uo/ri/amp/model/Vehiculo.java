@@ -32,9 +32,7 @@ public class Vehiculo
 	@OneToMany(mappedBy="vehiculo")
 	private Set<Averia> averias = new HashSet<>();
 
-	Vehiculo()
-	{
-	}
+	public Vehiculo(){}
 
 	public Vehiculo(String matricula)
 	{

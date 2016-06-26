@@ -44,25 +44,27 @@ public class Averia
 	@ManyToOne
 	private Vehiculo vehiculo;
 	
-	Averia()
+	public Averia()
 	{
+	}
+
+	public Averia(Date fecha, Vehiculo vehiculo)
+	{
+		super();
+		this.fecha = fecha;
+		Association.Averiar.link(vehiculo, this);
 	}
 	
 	public Averia(Date fecha, Vehiculo vehiculo,String descripcion,Double importe)
 	{
-		super();
-		this.fecha = fecha;
-		this.vehiculo = vehiculo;
+		this(fecha,vehiculo);
 		this.descripcion=descripcion;
 		this.importe=importe;
-		Association.Averiar.link(vehiculo, this);
 	}
 
 	public Averia(Vehiculo vehiculo, String descripcion,Double importe)
 	{
 		this(new Date(), vehiculo,descripcion,importe);
-		this.descripcion = descripcion;
-
 	}
 
 	public String getDescripcion()
@@ -119,10 +121,6 @@ public class Averia
 	public Mecanico getMecanico()
 	{
 		return mecanico;
-	}
-	
-	public void asignarMecanico(Mecanico mecanico){
-		this.mecanico=mecanico;
 	}
 
 	protected void _setMecanico(Mecanico mecanico)
