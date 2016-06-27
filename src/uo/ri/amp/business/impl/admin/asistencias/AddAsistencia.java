@@ -2,6 +2,7 @@ package uo.ri.amp.business.impl.admin.asistencias;
 
 import java.util.Date;
 
+import uo.ri.amp.business.impl.asserts.AssertCurso;
 import uo.ri.amp.model.Asistencia;
 import uo.ri.amp.model.Curso;
 import uo.ri.amp.model.Mecanico;
@@ -35,8 +36,14 @@ public class AddAsistencia implements Command {
 	public Asistencia execute() throws BusinessException {
 		
 		Mecanico m=MecanicoFinder.findByDni(dniMecanico);
+
+		if (m == null) {
+			throw new BusinessException("Mecanico con dni : " + dniMecanico + " no encontrado");
+		}
 		
 		Curso c=CursoFinder.findByCodigo(codigoCurso);
+
+		AssertCurso.NotNull(c, codigoCurso);
 
 		Asistencia a=new Asistencia(m, c, fincio, ffinal, pasitencia, status);
 		

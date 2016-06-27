@@ -21,6 +21,7 @@ public class DeleteCurso implements Command {
 	public Curso execute() throws BusinessException {
 		
 		Curso c=CursoFinder.findByCodigo(idCurso);
+		AssertCurso.NotNull(c, idCurso);
 		
 		for (Fragmento fragmento : c.getFragmentos()) {
 			Association.Fragmentar.unlink(fragmento);

@@ -26,15 +26,10 @@ public class CursoFinder {
 
 	public static Curso findByCodigo(Long codigoCurso) throws BusinessException {
 		
-		Curso c;
-		try {
-			c= (Curso) Jpa.getManager().createNamedQuery("Curso.findByCodigo",Curso.class)
-					.setParameter(1, codigoCurso).getSingleResult();
-		} catch (Exception e) {
-			throw new BusinessException("No existe curso con codigo : "+codigoCurso );
-		}
-		 AssertCurso.NotNull(c, codigoCurso);
-		  c.getAsistencias().size();
+		Curso c= (Curso) Jpa.getManager().createNamedQuery("Curso.findByCodigo",Curso.class)
+					.setParameter(1, codigoCurso).getResultList().get(0);
+
+		 c.getAsistencias().size();
 		  
 		 return c;
 	}

@@ -31,17 +31,11 @@ public class MecanicoFinder {
 	public static Mecanico findByDni(String dni) throws BusinessException {
 		
 		Mecanico m=null;
-		
-		try {
-			m= Jpa.getManager().createNamedQuery("Mecanico.findByDni",Mecanico.class).setParameter(1, dni).getSingleResult();	
-		} catch (Exception e) {
-			throw new BusinessException("Mecanico con dni : " + dni + " no encontrado");
-		}
-		
-		
-		if (m == null) {
-			throw new BusinessException("Mecanico con dni : " + dni + " no encontrado");
-		}
+
+		m= Jpa.getManager().createNamedQuery("Mecanico.findByDni",Mecanico.class).setParameter(1, dni)
+				.getResultList().get(0);
+
+
 		
 		m.getAsitencias().size();
 		

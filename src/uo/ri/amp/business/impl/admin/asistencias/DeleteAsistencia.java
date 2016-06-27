@@ -19,6 +19,8 @@ public class DeleteAsistencia implements Command {
 	public Asistencia execute() throws BusinessException {
 		
 		Asistencia a=AsistenciaFinder.findByKey(asistencia);
+
+		if (a==null){ throw new BusinessException("No se ha encontrado la asistencia");}
 		
 		Jpa.getManager().remove(a);
 		

@@ -14,11 +14,8 @@ public class AsistenciaFinder {
 	public static Asistencia findByKey(AsistenciaKey key) throws BusinessException {
 		Asistencia asistencia= Jpa.getManager().createNamedQuery("Asistencia.findByKey",Asistencia.class)
 				.setParameter(1, key.getCurso()).setParameter(2, key.getMecanico())
-				.setParameter(3, key.getfInicio()).getSingleResult();
-		
-		if (asistencia==null) {
-			throw new BusinessException("No se encontro asistencia");
-		}
+				.setParameter(3, key.getfInicio()).getResultList().get(0);
+
 		return asistencia;
 	}
 	

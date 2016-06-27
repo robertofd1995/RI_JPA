@@ -19,6 +19,10 @@ public class FindMecanicoDni implements Command {
 	public Mecanico execute() throws BusinessException {
 		Mecanico m= MecanicoFinder.findByDni(dni);
 
+		if (m == null) {
+			throw new BusinessException("Mecanico con dni : " + dni + " no encontrado");
+		}
+
 		return m;
 	}
 

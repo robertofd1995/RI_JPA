@@ -16,7 +16,12 @@ public class FindTipoVehiculoByNombre implements Command {
 	@Override
 	public TipoVehiculo execute() throws BusinessException {
 		
-		return TipoVehiculoFinder.findByNombre(tipoNombre);
+		TipoVehiculo tipo= TipoVehiculoFinder.findByNombre(tipoNombre);
+
+		if (tipo==null) {
+			throw new BusinessException("El tipo de vehiculo introducido no existe ");
+		}
+		return tipo;
 	}
 
 }
