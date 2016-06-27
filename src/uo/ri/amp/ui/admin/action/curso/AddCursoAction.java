@@ -54,7 +54,8 @@ public class AddCursoAction implements Action {
 						HashMap<String, Object> fragmento=new HashMap<String,Object>();
 						
 						try {
-							String tipoVehiculo=Console.readString("tipo vehiculo (Ej : Coche Aviso primera letra mayuscula)");
+							String tipoVehiculo=Console.readString
+									("tipo vehiculo (Ej : Coche Aviso primera letra mayuscula)");
 							
 							
 							Double porcentaje=Console.readDouble("porcentaje ");

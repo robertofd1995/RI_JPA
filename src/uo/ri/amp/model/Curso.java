@@ -30,8 +30,6 @@ public class Curso {
 	
 	@OneToMany(mappedBy="curso")
 	private Set<Asistencia> asistencias = new HashSet<>();
-	
-	
 
 	public Curso() {}
 
@@ -117,11 +115,5 @@ public class Curso {
 	public Long getCodigo() {
 		return codigo;
 	}
-
-	
-	
-	
-	
-	
 
 }

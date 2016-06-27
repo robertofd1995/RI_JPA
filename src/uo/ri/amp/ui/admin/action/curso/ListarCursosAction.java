@@ -25,18 +25,21 @@ public class ListarCursosAction implements Action {
 		List<Curso> cursos=ServicesFactory.getAdminService().findAllCursos();
 		List<Fragmento> fragmentos;
 		
-		boolean resuesta=(Console.readString("¿desea listar el curso con los fragmentos asociados? y/n").contains("y")==true);
+		boolean resuesta=(
+				Console.readString("ï¿½desea listar el curso con los fragmentos asociados? y/n").contains("y")==true);
 		Console.println("\n\tID --- nombre --- descripcion --- total horas");
 		
 		StringBuilder str=new StringBuilder();
 		
 		for (Curso curso : cursos) {
 			
-			str.append("\n\t"+curso.getCodigo()+" --- "+curso.getNombre()+" --- "+curso.getDescripcion()+" --- "+curso.getTotalHoras().doubleValue());
+			str.append("\n\t"+curso.getCodigo()+" --- "+
+					curso.getNombre()+" --- "+curso.getDescripcion()+" --- "+curso.getTotalHoras().doubleValue());
 			if(resuesta){
 				fragmentos=ServicesFactory.getAdminService().findAllFragmentoByCurso(curso);
 						for (Fragmento fragmento : fragmentos) {
-							str.append("\n\t\t Tipo : "+fragmento.getTipoVehiculo().getNombre()+" Horas : "+fragmento.getHoras());
+							str.append("\n\t\t Tipo : "+
+									fragmento.getTipoVehiculo().getNombre()+" Horas : "+fragmento.getHoras());
 						}
 				str.append("\n");		
 			}

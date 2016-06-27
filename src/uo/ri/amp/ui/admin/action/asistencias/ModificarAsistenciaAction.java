@@ -35,13 +35,12 @@ public class ModificarAsistenciaAction implements Action {
 		}
 		
 		Double pasistencia = Console.readDouble("Porcentaje de asistencias a clase");
-		boolean apto=(Console.readString("¿Es apto? (s/n")).contains("s")?true:false;
+		boolean apto=(Console.readString("ï¿½Es apto? (s/n")).contains("s")?true:false;
 		
 		if (apto) {
 			status=AsistenciaStatus.APTO;
 		}
-				
-		
+
 		ServicesFactory.getAdminService().updateAsistencia(dniMecanico,codigoCurso, finicio, ffinal, pasistencia,status);
 
 	}

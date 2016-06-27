@@ -30,7 +30,7 @@ public class ListarTiposVehiculosAction implements Action {
 			
 			str.append("\n\t   "+tipo.getId()+" --- "+tipo.getNombre());
 			if (mostrarTodo) {
-				str.append("---"+tipo.getPrecioHora().doubleValue() +"---"+tipo.getHorasExperto().doubleValue());			}
+				str.append("---"+tipo.getPrecioHora().doubleValue() +"---"+tipo.getHorasExperto().doubleValue());}
 		}
 		
 		Console.println(str.toString());

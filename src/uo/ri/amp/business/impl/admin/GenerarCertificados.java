@@ -14,18 +14,13 @@ public class GenerarCertificados implements Command {
 
 	@Override
 	public List<Certificado> execute() throws BusinessException {
-		
-		/*List<Mecanico> mecanicos = MecanicoFinder.findAll();
-		
-		TipoVehiculoFinder.findAll();*/
-		
+
 		HashSet<Certificado> certificados=CertificadoFinder.generarNuevos();
 		
 		for (Certificado certificado : certificados) {
 			if (CertificadoFinder.existCertificado(certificado)==false) {
 				Jpa.getManager().persist(certificado);
 			}
-			
 		}
 		
 		return new ArrayList<Certificado>(certificados);

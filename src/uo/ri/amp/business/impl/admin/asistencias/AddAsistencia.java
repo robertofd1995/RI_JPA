@@ -21,21 +21,6 @@ public class AddAsistencia implements Command {
 	private double pasitencia;
 	private AsistenciaStatus status;
 
-	/*private Asistencia asistencia;
-
-	public AddAsistencia(Asistencia asistencia) {
-		this.asistencia=asistencia;
-	}*/
-	
-	/*@Override
-	public Asistencia execute() throws BusinessException {
-		
-		Jpa.getManager().merge(asistencia.getCurso());
-		Jpa.getManager().merge(asistencia.getMecanico());
-		Jpa.getManager().persist(asistencia);
-		return asistencia;
-	}*/
-
 	public AddAsistencia(String dniMecanico, Long codigoCurso, Date finicio, Date ffinal, double pasistencia,
 			AsistenciaStatus status) {
 		this.dniMecanico=dniMecanico;
@@ -52,13 +37,7 @@ public class AddAsistencia implements Command {
 		Mecanico m=MecanicoFinder.findByDni(dniMecanico);
 		
 		Curso c=CursoFinder.findByCodigo(codigoCurso);
-		
-		/*try {
-			AsistenciaFinder.findByKey(new AsistenciaKey(c.getId(),m.getId() ,fincio));
-		} catch (Exception e) {
-			throw new BusinessException("Ya existe esta asitencia");
-		}*/
-		
+
 		Asistencia a=new Asistencia(m, c, fincio, ffinal, pasitencia, status);
 		
 		Jpa.getManager().persist(a);

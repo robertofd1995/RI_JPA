@@ -20,17 +20,12 @@ public class ListarAsistenciasCursoAction implements Action {
 		
 		Console.println("Listar Asistencias por cursos");
 		
-		boolean listarTodo=Console.readString("¿Quiere listar todo? (s/n) ").contains("s");
-		
-		
-		//long id_curso=Console.readLong("Introduzca el id del curso");
-		
+		boolean listarTodo=Console.readString("ï¿½Quiere listar todo? (s/n) ").contains("s");
+
 		StringBuilder str=null;
 		
 		for (Curso curso : ServicesFactory.getAdminService().findAllCursos()) {
-			
-			
-			
+
 			List<Asistencia> asistencias=ServicesFactory.getAdminService().findAllAsistenciasByCurso(curso);
 			
 			Console.println("\n\n Asistencias del curso :" + curso.getNombre()+" ( Codigo: "+curso.getCodigo()+")\n" );

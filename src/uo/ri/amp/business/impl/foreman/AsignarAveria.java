@@ -27,7 +27,8 @@ public class AsignarAveria implements Command {
 		Mecanico mecanico =MecanicoFinder.findById(mecanicoId);
 
 		if(!AssertAveria.Abierta(averia))
-			throw new BusinessException("La averia no puede ser asignada puesto que se encuentra en estado " + averiaBD.getStatus());
+			throw new BusinessException("La averia no puede ser asignada puesto que se encuentra en estado "
+					+ averiaBD.getStatus());
 
 		averiaBD.setStatus(AveriaStatus.ASIGNADA);
 		Association.Asignar.link(mecanico,averiaBD);

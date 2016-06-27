@@ -38,12 +38,6 @@ public class ForemanServiceImpl implements ForemanService {
 		executor.execute(new DeleteAveria(idAveria));
 	}
 
-	/*@SuppressWarnings("unchecked")
-	@Override
-	public List<Averia> findAllAveria() throws BusinessException {
-		return (List<Averia>) executor.execute(new FindAllAveria());
-	}*/
-
 	@Override
 	public Averia findAveriaById(Long id) throws BusinessException {
 		return (Averia) executor.execute(new FindAveriaById(id));

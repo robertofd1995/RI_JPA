@@ -18,9 +18,7 @@ public class FindMecanicoDni implements Command {
 	@Override
 	public Mecanico execute() throws BusinessException {
 		Mecanico m= MecanicoFinder.findByDni(dni);
-		
-		
-		
+
 		return m;
 	}
 

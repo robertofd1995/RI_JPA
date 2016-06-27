@@ -9,8 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import alb.util.console.Console;
 import alb.util.date.DateUtil;
 import uo.ri.amp.model.types.AsistenciaStatus;
 import uo.ri.amp.model.types.CertificadoKey;
@@ -56,7 +54,8 @@ public class Certificado {
 	
 
 	/**
-	 * En caso de que el mecanico cumpla con los requisitos para obtener el certificado se retorna true , en caso contrario false
+	 * En caso de que el mecanico cumpla con los requisitos para obtener el certificado se retorna true
+	 * , en caso contrario false
 	 * @param mecanico
 	 * @param tipo
 	 * @return true si es valido , false en caso contrario

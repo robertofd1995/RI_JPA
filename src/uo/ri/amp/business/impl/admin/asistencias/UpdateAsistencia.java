@@ -36,7 +36,9 @@ public class UpdateAsistencia implements Command {
 	@Override
 	public Asistencia execute() throws BusinessException {
 		
-		Asistencia asistenciaBD=AsistenciaFinder.findByKey(new AsistenciaKey(CursoFinder.findByCodigo(codigoCurso).getId(), MecanicoFinder.findByDni(dniMecanico).getId(), fincio));
+		Asistencia asistenciaBD=AsistenciaFinder.findByKey
+				(new AsistenciaKey(CursoFinder.findByCodigo(codigoCurso).getId(),
+						MecanicoFinder.findByDni(dniMecanico).getId(), fincio));
 		
 		asistenciaBD.setAsistencia(pasitencia);
 		asistenciaBD.setStatus(status);

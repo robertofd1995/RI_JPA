@@ -50,35 +50,25 @@ public class InsertaAsistenciasAction implements Action {
 				break;
 			}
 			
-			boolean apto=(Console.readString("¿Es apto? (s/n")).contains("s")?true:false;
+			boolean apto=(Console.readString("ï¿½Es apto? (s/n")).contains("s")?true:false;
 			
 			if (apto) {
 				status=AsistenciaStatus.APTO;
 			}
 			
 			AdminService admin = ServicesFactory.getAdminService();
-			
-			//AssertAsistencia.NotRepeated(dniMecanico, codigoCurso, finicio);
-			
-			admin.AddAsistencia(dniMecanico,codigoCurso, finicio, ffinal, pasistencia,status);//(dniMecanico,codigoCurso, finicio, ffinal, pasistencia,status);
-			
-			
-			//asistencias.add(asistencia);
-			
+
+			admin.AddAsistencia(dniMecanico,codigoCurso, finicio, ffinal, pasistencia,status);
+
 		} while (masAsistencias());
 		
-		/*for (Asistencia asistenciaaux : asistencias) {
-			ServicesFactory.getAdminService().AddAsistencia(asistenciaaux);
-		}*/
-		
-		
-		
+
 		Console.println("Operacion finalizada");
 
 	}
 	
 	private boolean masAsistencias() {
-		return Console.readString("¿Anadir mas asistencias? (s/n) ").equalsIgnoreCase("s");
+		return Console.readString("ï¿½Anadir mas asistencias? (s/n) ").equalsIgnoreCase("s");
 	}
 
 }

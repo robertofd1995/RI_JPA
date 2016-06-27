@@ -128,7 +128,8 @@ public class TipoVehiculo
 	@Override
 	public String toString()
 	{
-		return "TipoVehiculo [ id="+id+", nombre=" + nombre + ", precioHora=" + precioHora.longValue() +", horas experto :"+ horasExperto.doubleValue()+ "]";
+		return "TipoVehiculo [ id="+id+", nombre=" + nombre + ", precioHora=" + precioHora.longValue()
+				+", horas experto :"+ horasExperto.doubleValue()+ "]";
 	}
 
 }

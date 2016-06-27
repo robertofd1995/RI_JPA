@@ -25,8 +25,8 @@ public interface AdminService {
 
 	//Mecanicos
 	/**
-	 * Este metodo añadira un nuevo mecanico a la base de datos
-	 * @param mecanico El mecanico que se quiere añadir
+	 * Este metodo aï¿½adira un nuevo mecanico a la base de datos
+	 * @param mecanico El mecanico que se quiere aï¿½adir
 	 * @throws BusinessException
 	 */
 	void newMechanic(Mecanico mecanico) throws BusinessException;
@@ -91,7 +91,7 @@ public interface AdminService {
 	Long existeCurso(Long codigo) throws BusinessException;
 	
 	/**
-	 * Añade un nuevo curso a la base de datos
+	 * Aï¿½ade un nuevo curso a la base de datos
 	 * @param curso
 	 * @param fragmentos
 	 * @throws BusinessException en caso de que se haya introducido algun dato no valido
@@ -127,7 +127,7 @@ public interface AdminService {
 	List<Fragmento> findAllFragmentoByCurso(Curso curso) throws BusinessException;
 	
 	/**
-	 * Añade un nuevo fragmetno a la base de datos
+	 * Aï¿½ade un nuevo fragmetno a la base de datos
 	 * @param fragmento
 	 * @throws BusinessException
 	 */
@@ -163,7 +163,7 @@ public interface AdminService {
 	
 	//Asistencias
 	/**
-	 * Añade una nueva asistencia a la base de datos
+	 * Aï¿½ade una nueva asistencia a la base de datos
 	 * @param dniMecanico
 	 * @param codigoCurso
 	 * @param finicio
@@ -211,7 +211,7 @@ public interface AdminService {
 	 */
 	void deleteAsistencia(AsistenciaKey asistenciakey) throws BusinessException;
 	/**
-	 * Añade un nuevo fragmento a la base de datos
+	 * Aï¿½ade un nuevo fragmento a la base de datos
 	 * @param fragmento
 	 * @throws BusinessException
 	 */
@@ -226,23 +226,13 @@ public interface AdminService {
 	 */
 	Mecanico findMecanicoByDni(String dniMecanico) throws BusinessException;
 	/**
-	 * Este metodo generara todos los nuevos certificados de aquellos mecanicos que hayan superado las condiciones para obtener el certficado
+	 * Este metodo generara todos los nuevos certificados de aquellos mecanicos que hayan superado las
+	 * condiciones para obtener el certficado
 	 * @throws BusinessException
 	 */
 	void generarCertificados() throws BusinessException;
 	
 	HashMap<String, Object> listarFormacion(Long mecanico_id) throws BusinessException;
 	ArrayList<HashMap<String, Object>> listarFormacionPorTipos() throws BusinessException;
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	// resto de mÃ©todos que faltan...
 
 }

@@ -38,9 +38,6 @@ public class FormacionPorTipo implements Command {
 			formacion.put("mecanicos", mecanicos);
 			formaciones.add(formacion);
 		}
-		
-		
-		 
 		 return formaciones;
 	}
 

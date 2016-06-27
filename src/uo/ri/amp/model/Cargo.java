@@ -63,4 +63,23 @@ public class Cargo
 	{
 		this.importe = importe;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Cargo cargo = (Cargo) o;
+
+		if (!getFactura().equals(cargo.getFactura())) return false;
+		return getMedioPago().equals(cargo.getMedioPago());
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = getFactura().hashCode();
+		result = 31 * result + getMedioPago().hashCode();
+		return result;
+	}
 }
