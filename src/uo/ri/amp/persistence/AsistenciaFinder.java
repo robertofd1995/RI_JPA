@@ -10,15 +10,11 @@ import uo.ri.model.exception.BusinessException;
 import uo.ri.persistence.util.Jpa;
 
 public class AsistenciaFinder {
-	
-	/*public static Asistencia findByKey(AsistenciaKey key) {
-		Asistencia curso= Jpa.getManager().find(Asistencia.class, key);
-		return curso;
-	}*/
-	
+
 	public static Asistencia findByKey(AsistenciaKey key) throws BusinessException {
 		Asistencia asistencia= Jpa.getManager().createNamedQuery("Asistencia.findByKey",Asistencia.class)
-				.setParameter(1, key.getCurso()).setParameter(2, key.getMecanico()).setParameter(3, key.getfInicio()).getSingleResult();
+				.setParameter(1, key.getCurso()).setParameter(2, key.getMecanico())
+				.setParameter(3, key.getfInicio()).getSingleResult();
 		
 		if (asistencia==null) {
 			throw new BusinessException("No se encontro asistencia");
@@ -29,9 +25,9 @@ public class AsistenciaFinder {
 
 	public static List<Asistencia> findAllByCurso(Curso curso) {
 		
-		return Jpa.getManager().createNamedQuery("Asistencia.findByCursoId",Asistencia.class).setParameter(1, curso.getCodigo()).getResultList();
+		return Jpa.getManager().createNamedQuery("Asistencia.findByCursoId",
+				Asistencia.class).setParameter(1, curso.getCodigo()).getResultList();
 	}
-
 
 	public static Long existeAveria(String dni, Long codigo, Date finicio) {
 		

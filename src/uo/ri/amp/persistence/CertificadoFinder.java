@@ -22,7 +22,8 @@ public class CertificadoFinder {
 		
 		for (Object[] certificado : certi) {
 
-			Certificado certAux =new Certificado(MecanicoFinder.findById((Long)certificado[0]), TipoVehiculoFinder.findById((Long)certificado[1]), (Date)certificado[2]);
+			Certificado certAux =new Certificado(MecanicoFinder.findById((Long)certificado[0]),
+					TipoVehiculoFinder.findById((Long)certificado[1]), (Date)certificado[2]);
 
 			if (certAux.getMecanico()!=null)
 				certificados.add(certAux);
@@ -36,7 +37,8 @@ public class CertificadoFinder {
 		
 		certificado.setFecha(DateUtil.today());
 		
-		Long count= Jpa.getManager().createNamedQuery("Certificado.exist",Long.class).setParameter(1, certificado).getSingleResult();
+		Long count= Jpa.getManager().createNamedQuery("Certificado.exist",Long.class)
+				.setParameter(1, certificado).getSingleResult();
 		
 		return count==1;
 	}

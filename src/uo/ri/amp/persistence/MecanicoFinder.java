@@ -54,14 +54,11 @@ public class MecanicoFinder {
 		List<Mecanico> mecanicos=null;
 		
 		
-			mecanicos=Jpa.getManager().createNamedQuery("Mecanico.findExpertosTipo",Mecanico.class).setParameter(1, tipoVehiculo).getResultList();
+			mecanicos=Jpa.getManager().createNamedQuery("Mecanico.findExpertosTipo",Mecanico.class)
+					.setParameter(1, tipoVehiculo).getResultList();
 			
 			if(mecanicos==null)
 				throw new BusinessException("No se ha encontrado a ningun experto");
-			
-			/*for (Long id : ids) {
-				mecanicos.add(findById(id));
-			}*/
 
 		return mecanicos;
 		
@@ -69,7 +66,8 @@ public class MecanicoFinder {
 
 	public static HashMap<String, Object> findFormacion(Long mecanicoId) {
 		
-		Object[] aux= (Object[]) Jpa.getManager().createNamedQuery("Mecanico.formacionPorIdI").setParameter(1, mecanicoId).getSingleResult();
+		Object[] aux= (Object[]) Jpa.getManager().createNamedQuery("Mecanico.formacionPorIdI")
+				.setParameter(1, mecanicoId).getSingleResult();
 		
 		HashMap<String, Object> certi=new HashMap<>();
 		
@@ -77,7 +75,8 @@ public class MecanicoFinder {
 		certi.put("horasAsistidas", aux[1]);
 		
 		@SuppressWarnings("unchecked")
-		List<Object[]> aux2=  Jpa.getManager().createNamedQuery("Mecanico.formacionPorId2").setParameter(1, mecanicoId).getResultList();
+		List<Object[]> aux2=  Jpa.getManager().createNamedQuery("Mecanico.formacionPorId2")
+				.setParameter(1, mecanicoId).getResultList();
 		
 		List<HashMap<String, Object>> tipos=new ArrayList<HashMap<String,Object>>();
 		
@@ -98,9 +97,9 @@ public class MecanicoFinder {
 	
 			
 		@SuppressWarnings("unchecked")
-		List<Object[]> aux=  Jpa.getManager().createNamedQuery("Mecanico.formacionPorTipo").setParameter(1, tipo).getResultList();
-		
-		
+		List<Object[]> aux=  Jpa.getManager().createNamedQuery("Mecanico.formacionPorTipo")
+				.setParameter(1, tipo).getResultList();
+
 		return aux;
 	}
 

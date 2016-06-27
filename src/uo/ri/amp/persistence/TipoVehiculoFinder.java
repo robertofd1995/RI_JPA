@@ -15,7 +15,8 @@ public class TipoVehiculoFinder {
 	
 	
 	public static TipoVehiculo findByNombre(String nombreTipo) throws BusinessException {
-		TipoVehiculo tipo= (TipoVehiculo) Jpa.getManager().createNamedQuery("TipoVehiculo.findByNombre").setParameter(1, nombreTipo).getSingleResult();
+		TipoVehiculo tipo= (TipoVehiculo) Jpa.getManager().createNamedQuery("TipoVehiculo.findByNombre")
+				.setParameter(1, nombreTipo).getSingleResult();
 		
 		if (tipo==null) {
 			throw new BusinessException("El tipo de vehiculo introducido no existe ");
@@ -25,7 +26,8 @@ public class TipoVehiculoFinder {
 	}
 	
 	public static List<TipoVehiculo> findAll() {
-		List<TipoVehiculo> tipos= Jpa.getManager().createNamedQuery("TipoVehiculo.findAll",TipoVehiculo.class).getResultList();
+		List<TipoVehiculo> tipos= Jpa.getManager().createNamedQuery("TipoVehiculo.findAll",TipoVehiculo.class)
+				.getResultList();
 		return tipos;
 	}
 

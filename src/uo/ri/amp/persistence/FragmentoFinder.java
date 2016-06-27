@@ -17,7 +17,8 @@ public class FragmentoFinder {
 
 	public static List<Fragmento> findAllByCurso(Curso curso) {
 		
-		return Jpa.getManager().createNamedQuery("Fragmento.findByCursoId",Fragmento.class).setParameter(1, curso.getId()).getResultList();
+		return Jpa.getManager().createNamedQuery("Fragmento.findByCursoId",Fragmento.class)
+				.setParameter(1, curso.getId()).getResultList();
 	}
 
 }
