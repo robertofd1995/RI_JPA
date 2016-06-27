@@ -24,6 +24,11 @@ public class AsignarAveria implements Command {
 	public Object execute() throws BusinessException {
 		
 		Averia averiaBD=AveriaFinder.findById(averia.getId());
+
+		if (averia==null) {
+			throw new BusinessException("No se a encontrado ninguna averia ");
+		}
+
 		Mecanico mecanico =MecanicoFinder.findById(mecanicoId);
 
 		if(!AssertAveria.Abierta(averia))

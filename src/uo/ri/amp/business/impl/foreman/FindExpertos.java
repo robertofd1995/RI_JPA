@@ -18,8 +18,13 @@ public class FindExpertos implements Command {
 
 	@Override
 	public List<Mecanico> execute() throws BusinessException {
-		
-		return MecanicoFinder.findExpertosTipo(tipoVehiculo);
+
+		List<Mecanico> mecanicos= MecanicoFinder.findExpertosTipo(tipoVehiculo);
+
+		if(mecanicos==null)
+			throw new BusinessException("No se ha encontrado a ningun experto");
+
+		return mecanicos;
 	}
 
 }

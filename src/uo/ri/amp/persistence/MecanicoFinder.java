@@ -51,8 +51,7 @@ public class MecanicoFinder {
 			mecanicos=Jpa.getManager().createNamedQuery("Mecanico.findExpertosTipo",Mecanico.class)
 					.setParameter(1, tipoVehiculo).getResultList();
 			
-			if(mecanicos==null)
-				throw new BusinessException("No se ha encontrado a ningun experto");
+
 
 		return mecanicos;
 		

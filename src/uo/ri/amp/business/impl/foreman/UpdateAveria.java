@@ -1,5 +1,6 @@
 package uo.ri.amp.business.impl.foreman;
 
+import uo.ri.amp.business.impl.asserts.AssertAveria;
 import uo.ri.amp.model.Averia;
 import uo.ri.amp.persistence.AveriaFinder;
 import uo.ri.business.impl.Command;
@@ -16,6 +17,8 @@ public class UpdateAveria implements Command {
 	@Override
 	public Averia execute() throws BusinessException {
 		Averia averiaBD=AveriaFinder.findById(averia.getId());
+
+		AssertAveria.NotNull(averiaBD,averia.getId());
 		
 		averiaBD.setDescripcion(averia.getDescripcion());
 		averiaBD.setImporte(averia.getImporte());

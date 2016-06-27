@@ -15,10 +15,7 @@ public class AveriaFinder {
 
 	public static Averia findById(Long idAveria) throws BusinessException {
 		Averia averia= Jpa.getManager().find(Averia.class, idAveria);
-		
-		if (averia==null) {
-			throw new BusinessException("No se a encontrado ninguna averia con el id : " + idAveria);
-		}
+
 		averia.getVehiculo().getTipo();
 		
 		return averia;
